@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CosmOS packages</title>
+<style>
+ :root{color-scheme:light dark;--bg:#fff;--fg:#1c2230;--muted:#5b6478;--card:#f3f5fa;--acc:#d6007a}
+ @media (prefers-color-scheme:dark){:root{--bg:#0a0e16;--fg:#e8ecf4;--muted:#9aa5bd;--card:#141b2b}}
+ body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+ main{max-width:46rem;margin:0 auto;padding:2rem 1rem 4rem}
+ h1{margin:0 0 .25rem}p.lead{color:var(--muted);margin-top:0}
+ pre{background:var(--card);padding:.9rem 1rem;border-radius:8px;overflow-x:auto;font-size:.92rem}
+ code{font-family:ui-monospace,monospace}
+ h2{margin-top:2rem;font-size:1.15rem;color:var(--acc)}
+ li{margin:.25rem 0}
+</style></head><body><main>
+<h1>CosmOS packages</h1>
+<p class="lead">The pieces of CosmOS as ordinary Fedora packages. Adding this repository is optional; nothing on your system uses it unless you do.</p>
+
+<h2>Add the repository</h2>
+<pre><code>sudo rpm --import https://theskysanctum.github.io/cosmos-repo/RPM-GPG-KEY-cosmos
+sudo curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-cosmos https://theskysanctum.github.io/cosmos-repo/RPM-GPG-KEY-cosmos
+sudo dnf config-manager addrepo --from-repofile=https://theskysanctum.github.io/cosmos-repo/cosmos.repo</code></pre>
+<p>Packages and repository metadata are signed (GPL-3.0-or-later). Key fingerprint: <code>A317 4049 212E 0D8E FD18  DE16 48EE 8F0D B26F 39F2</code></p>
+<p>or install the package that contains the same file: <code>sudo rpm --import https://theskysanctum.github.io/cosmos-repo/RPM-GPG-KEY-cosmos &amp;&amp; sudo dnf install https://theskysanctum.github.io/cosmos-repo/noarch/cosmos-repo-0.4.0-1.20260926175237.fc44.noarch.rpm</code></p>
+
+<h2>Install what you want</h2>
+<pre><code>sudo dnf install cosmos-shop          # the Shop (curated apps, Expansion Packs, game downloads)
+sudo dnf install cosmos-files         # a file manager that shows only your files and drives
+sudo dnf install cosmos-controllers   # controller lights, rumble, gyro
+sudo dnf install cosmos-desktop       # the whole desktop</code></pre>
+<p>Packages that change how the machine works (the login screen, the admin service, the sudo shims, recovery) are separate and only installed when you ask for them: <code>cosmos-login</code>, <code>cosmos-kronos</code>, <code>cosmos-sudo-shims</code>, <code>cosmos-recovery</code>.</p>
+
+<h2>Packages in this repository</h2>
+<ul><li><code>cosmos-android</code>: Android (Waydroid) for games, with a button-to-touch mapper</li><li><code>cosmos-common</code>: CosmOS shared modules: the app policy, the curated catalog, Expansion Packs and the task window</li><li><code>cosmos-controllers</code>: Controller Customizer: lights, rumble, motion and adaptive triggers</li><li><code>cosmos-desktop</code>: The CosmOS desktop for a normal Fedora</li><li><code>cosmos-files</code>: CosmOS Files: a file manager that shows only your files, drives and removable media</li><li><code>cosmos-files-udisks</code>: Lets the account named "user" mount internal drives from CosmOS Files without a password (opt-in)</li><li><code>cosmos-firewall</code>: The CosmOS firewall zone and its named doors (firewalld)</li><li><code>cosmos-gamebox-bundled-emulators</code>: RetroArch, Dolphin, PCSX2 and MKXP-Z as GameBox bundles them</li><li><code>cosmos-gamebox</code>: GameBox: the game and emulator frontend (code and session)</li><li><code>cosmos-gamebox-emulators</code>: xemu, Flycast and extract-xiso, built from source</li><li><code>cosmos-gamebox-full</code>: GameBox with everything: emulators, Wine, streaming and music</li><li><code>cosmos-gamebox-music-1</code>: GameBox menu music, part 1 of 2</li><li><code>cosmos-gamebox-music-2</code>: GameBox menu music, part 2 of 2</li><li><code>cosmos-gamebox-music</code>: GameBox menu music (all tracks)</li><li><code>cosmos-gamebox-streaming</code>: GameBox streaming: Sunshine and Moonlight binaries</li><li><code>cosmos-gamebox-tools</code>: Compiled helpers for GameBox: Skyscraper (game art scraper) and the Millennium installer</li><li><code>cosmos-gamebox-wine</code>: The Wine build GameBox runs Windows games with</li><li><code>cosmos-gamebox-wm</code>: GameBox's own small X window manager (consolewm)</li><li><code>cosmos-image</code>: Everything the CosmOS image contains</li><li><code>cosmos-input</code>: CosmOS controller input: any gamepad becomes a keyboard and mouse, plus an on-screen keyboard</li><li><code>cosmos-kronos</code>: Kronos: the CosmOS admin service, with a tamper-evident audit log</li><li><code>cosmos-login</code>: The CosmOS login screen (a greetd greeter) with profiles, PINs and a Desktop or GameBox choice</li><li><code>cosmos-plymouth</code>: The CosmOS boot splash (plymouth theme)</li><li><code>cosmos-portal</code>: CosmOS file dialog for other apps (an xdg-desktop-portal FileChooser backend)</li><li><code>cosmos-recovery</code>: CosmOS recovery: a no-shell app that can roll back the OS, reset the admin passphrase or a PIN</li><li><code>cosmos-remote</code>: Remote Access: SSH keys and the Webtop development desktop</li><li><code>cosmos-repo</code>: The CosmOS package repository (optional)</li><li><code>cosmos-shell</code>: The CosmOS desktop shell: bar, launcher, lock screen, profiles and the session</li><li><code>cosmos-shop</code>: The CosmOS Shop: curated Flatpaks, packages, AppImages, Expansion Packs, and game downloads</li><li><code>cosmos-sudo-shims</code>: Never type sudo: commands that need root ask the admin service for it</li><li><code>cosmos-theme</code>: CosmOS fonts and backgrounds</li><li><code>cosmos-theme-defaults</code>: The CosmOS dark look as the system default for GTK, Qt and notifications (opt-in)</li><li><code>cosmos-updates</code>: Updates for Flatpaks, AppImages and the system in one place</li><li><code>cosmos-vm-manager</code>: Virtual Machines: a QEMU front end with host device passthrough</li><li><code>cosmos-winpack</code>: Game Packs: a Windows game as one SquashFS file that runs under any Proton</li><li><code>cosmos-wm</code>: cosmos-wm: the CosmOS Wayland compositor</li></ul>
+<p>Built 2026-09-26. The repository is not signed yet.</p>
+</main></body></html>
